@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
+  url       = env("DATABASE_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
@@ -17,6 +17,8 @@ model User {
 
   provider String?
   poviderId String?
+
+  verifide DateTime
 
   cart            Cart?
   orders          Order[]
@@ -94,8 +96,8 @@ model CartItem {
   cart   Cart @relation(fields: [cartId], references: [id])
   cartId Int
 
-  productItem  ProductItem @relation(fields: [prductItemId], references: [id])
-  prductItemId Int
+  productItem  ProductItem @relation(fields: [productItemId], references: [id])
+  productItemId Int
 
   quantity Int
 
